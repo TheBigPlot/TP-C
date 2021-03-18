@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>sujet.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* a11y-dark theme */
+/* Based on the Tomorrow Night Eighties theme: https://github.com/isagalaev/highlight.js/blob/master/src/styles/tomorrow-night-eighties.css */
+/* @author: ericwbailey */
+
+/* Comment */
+.hljs-comment,
+.hljs-quote {
+  color: #d4d0ab;
+}
+
+/* Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+  color: #ffa07a;
+}
+
+/* Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+  color: #f5ab35;
+}
+
+/* Yellow */
+.hljs-attribute {
+  color: #ffd700;
+}
+
+/* Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+  color: #abe338;
+}
+
+/* Blue */
+.hljs-title,
+.hljs-section {
+  color: #00e0e0;
+}
+
+/* Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+  color: #dcc6e0;
+}
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  background: #2b2b2b;
+  color: #f8f8f2;
+  padding: 0.5em;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+@media screen and (-ms-high-contrast: active) {
+  .hljs-addition,
+  .hljs-attribute,
+  .hljs-built_in,
+  .hljs-builtin-name,
+  .hljs-bullet,
+  .hljs-comment,
+  .hljs-link,
+  .hljs-literal,
+  .hljs-meta,
+  .hljs-number,
+  .hljs-params,
+  .hljs-string,
+  .hljs-symbol,
+  .hljs-type,
+  .hljs-quote {
+        color: highlight;
+    }
+
+    .hljs-keyword,
+    .hljs-selector-tag {
+        font-weight: bold;
+    }
+}
+
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="tp-c">TP C</h1>
+<h2 id="set-up">SET UP:</h2>
+<p>You can find the source code here:<br>
+{NEED THE LINK}</p>
+<p>The TP architecture:</p>
+<pre class="hljs"><code><div>TPC
+|
+|---alloc.c
+|---alloc.h
+|   
+|---basics
+|       |---basics.c
+|       |---basics.h
+|
+|---graphs
+|       |---graph.c
+|       |---graph.h
+|
+|---lists
+|       |---list.c
+|       |---list.h
+|
+|---Makefile
+|---MyMain.c
+|
+|---queues
+|       |---queue.c
+|       |---queue.h
+|
+|---structs.h
+|---sujet.md
+|---sujet.pdf
+</div></code></pre>
+<h2 id="makefile">Makefile:</h2>
+<p>There is a Makefile for this project.
+The commands are simples:</p>
+<pre class="hljs"><code><div>make test -&gt; will compile all the code
+make clean -&gt; will clean all the compilation files and the executable.
+
+make my_tests -&gt; will compile the MyMain.c were you can write whatever you want.
+
+make my_clean -&gt; will clean all the compilation files from my_tests.
+</div></code></pre>
+<h2 id="moulinette">Moulinette:</h2>
+<p>when you have compiled the project you can use the moulinette.</p>
+<pre class="hljs"><code><div>./test part_you_want_to_test nb_tests <span class="hljs-comment">//this is the pattern</span>
+</div></code></pre>
+<pre class="hljs"><code><div>by example:
+./tests lists <span class="hljs-number">10</span>
+./tests basiscs <span class="hljs-number">10</span>
+./tests graphs <span class="hljs-number">10</span>
+./tests queues <span class="hljs-number">10</span>
+</div></code></pre>
+<h1 id="basics">Basics:</h1>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> <span class="hljs-title">power_of_two</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span></span>;
+</div></code></pre>
+<p>Behavior:<br>
+return 2^n</p>
+<pre class="hljs"><code><div>examples:
+parameter -&gt; return
+
+0 -&gt; 1
+1 -&gt; 2
+3 -&gt; 8
+7 -&gt; 128 
+</div></code></pre>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> <span class="hljs-title">binary_to_int</span><span class="hljs-params">(<span class="hljs-keyword">int</span> bin)</span></span>;
+</div></code></pre>
+<p>Behavior:<br>
+Take a &quot;binary&quot; number and return the conversion in int.</p>
+<pre class="hljs"><code><div>examples:
+parameter -&gt; return
+
+1 -&gt; 1
+10 -&gt; 2
+101 -&gt; 5
+1111 -&gt; 15
+</div></code></pre>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">decompose</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> tab[])</span></span>;
+</div></code></pre>
+<p>Behavior:<br>
+Add all the elements of the the decomposition in prime numbers of n in array tab.
+We supposed that tab is long enough.</p>
+<pre class="hljs"><code><div>examples:
+parameter -&gt; tab
+
+5 -&gt; [5]
+14 -&gt; [2,7]
+172 -&gt; [2,2,43]
+</div></code></pre>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">reverse_arr</span><span class="hljs-params">(<span class="hljs-keyword">int</span>* arr,<span class="hljs-keyword">size_t</span> length)</span></span>;
+</div></code></pre>
+<p>Behavior:<br>
+Reverse the order of the elements in an array of int.</p>
+<pre class="hljs"><code><div>examples:
+before -&gt; after
+
+[1,2,3,4] -&gt; [4,3,2,1]
+[6,1,8,4,9] -&gt; [9,4,8,1,6]
+[1] -&gt; [1]
+</div></code></pre>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">n_shift_arr</span><span class="hljs-params">(<span class="hljs-keyword">int</span>* arr,<span class="hljs-keyword">size_t</span> length, <span class="hljs-keyword">int</span> n)</span></span>;
+</div></code></pre>
+<p>Behavior:
+Shift all elements in the array arr of n places.
+Warning: n could be negatif.</p>
+<pre class="hljs"><code><div>examples:
+arr, n  -&gt; arr
+
+[1,2,3,4], 1 -&gt; [4,1,2,3]
+[1,2,3,4], -1 -&gt; [2,3,4,1]
+[8,4,5,9,1,7], 3 -&gt; [9,1,7,8,4,5]
+[8,4,5,9,1], -3 -&gt; [9,1,8,4,5]
+</div></code></pre>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">replace</span><span class="hljs-params">(<span class="hljs-keyword">char</span>* s1, <span class="hljs-keyword">char</span>* s2)</span></span>;
+</div></code></pre>
+<p>Behavior:
+Replace as much as possible the characters of s1 by those of s2.</p>
+<pre class="hljs"><code><div>examples:
+s1, s2 -&gt; s1
+
+&quot;co&quot;, &quot;a&quot; -&gt; &quot;ao&quot;
+&quot;sa&quot;, &quot;cou&quot; -&gt; &quot;co&quot;
+&quot;salut&quot;, &quot;allo&quot; -&gt; &quot;allot&quot;
+&quot;&quot;, &quot;a&quot; -&gt; &quot;&quot;
+</div></code></pre>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">cesar</span><span class="hljs-params">(<span class="hljs-keyword">char</span>* s, <span class="hljs-keyword">int</span> dec)</span></span>;
+</div></code></pre>
+<p>Behavior:
+Implement the cesar cipher, it has to work with possitives and negatives shifts, it has to shift the letters and only the letters.</p>
+<pre class="hljs"><code><div>examples:
+s, dec -&gt; s
+
+&quot;abc&quot;, 1 -&gt; &quot;bcd&quot;
+&quot;a2b&quot;, 2 -&gt; &quot;c2d&quot;
+&quot;ea4(&quot;, -1 -&gt; &quot;dz4&quot;
+&quot;coucou toi&quot;, 52 -&gt; &quot;coucou toi&quot;
+</div></code></pre>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> <span class="hljs-title">basic_calculator</span><span class="hljs-params">(<span class="hljs-keyword">char</span>* s)</span></span>;
+</div></code></pre>
+<p>Behavior:
+Implement a simple caculator, it has to execute the mathematical expression from the left to the right without respecting the priorities of calculus.</p>
+<pre class="hljs"><code><div>examples:
+s -&gt; return
+
+&quot;2+2&quot; -&gt; 4
+&quot;2+2*2&quot; -&gt; 8
+&quot;2*2+2&quot; -&gt; 6
+&quot;3-1*2&quot; -&gt; 4
+</div></code></pre>
+<h1 id="lists">Lists:</h1>
+<p>Here is the struct:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">list</span> <span class="hljs-title">list</span>;</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">list</span> {</span>
+  <span class="hljs-keyword">int</span> val;
+  <span class="hljs-built_in">list</span>* next;
+};
+</div></code></pre>
+<p>In this part you always have to make NULL list consideration, a NULL could be give as a parameter of a function and that could lead to segfaults if not handled.</p>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">list_init</span><span class="hljs-params">(<span class="hljs-built_in">list</span>* l)</span></span>;
+</div></code></pre>
+<p>Behavior:<br>
+Initialise a list pointer with -42 as value and a Null pointer for the next element.</p>
+<pre class="hljs"><code><div>example:
+before -&gt; after
+val = xxxxxx -&gt; val = -42
+next = yyyyyy -&gt; next = NULL
+</div></code></pre>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-built_in">list</span>* <span class="hljs-title">create_list</span><span class="hljs-params">(<span class="hljs-keyword">int</span> nb)</span></span>;
+</div></code></pre>
+<p>Behavior:<br>
+Create an element of &quot;type&quot; list with nb as value and Null as next element. It has to be allocated !</p>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">list_is_empty</span><span class="hljs-params">(<span class="hljs-built_in">list</span> *l)</span></span>;
+</div></code></pre>
+<p>Behavior:<br>
+Return true (1) if the list is empty  (if there is only the sentinel) else return false (0).</p>
+<pre class="hljs"><code><div>examples:
+list -&gt; return
+
+NULL -&gt; 1
+-42: -&gt; 1
+-42: 10 -&gt; 0
+-42: 1: 84 -&gt;0
+</div></code></pre>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">size_t</span> <span class="hljs-title">list_len</span><span class="hljs-params">(<span class="hljs-built_in">list</span> *l)</span></span>;
+</div></code></pre>
+<p>Behavior:
+Return the length of the list, the sentinel must be excluded.</p>
+<pre class="hljs"><code><div>examples:
+list -&gt; len
+
+NULL -&gt; -1
+-42: -&gt; 0
+-42: 1 -&gt; 1
+-42: 8 :45: 96 -&gt; 3
+</div></code></pre>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-built_in">list</span>* <span class="hljs-title">list_get</span><span class="hljs-params">(<span class="hljs-built_in">list</span>* l, <span class="hljs-keyword">size_t</span> n)</span></span>;
+</div></code></pre>
+<p>Behavior:
+return the n-ieme element of the list l. If it does not exist return NULL.</p>
+<pre class="hljs"><code><div>examples:
+list, n -&gt; element
+
+NULL, x -&gt; NULL
+-42: 1: 8: 42, 3 -&gt; List(val = 42, next = NULL)
+-42: 1: 8: 42, -1 -&gt; NULL
+-42: 1: 8: 42, 2 -&gt; List(val = 8, next -&gt; 42)
+</div></code></pre>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">list_push_front</span><span class="hljs-params">(<span class="hljs-built_in">list</span> *l, <span class="hljs-built_in">list</span> *elm)</span></span>;
+</div></code></pre>
+<p>Behavior:
+Insert a position 0 of the list the element elm.</p>
+<pre class="hljs"><code><div>examples:
+list before, elm -&gt; list after
+
+NULL, List(2,NULL) -&gt; NULL
+-42:, List(2,NULL) -&gt; -42:2
+-42: 48: 12: 15, List(2,NULL) -&gt; -42:2:48:12:15
+</div></code></pre>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">list_push_end</span><span class="hljs-params">(<span class="hljs-built_in">list</span> *l, <span class="hljs-built_in">list</span> *elm)</span></span>;
+</div></code></pre>
+<p>Behavior:
+Insert at the end of the list the element elm.</p>
+<pre class="hljs"><code><div>examples:
+list before, elm -&gt; list after
+
+NULL, List(2,NULL) -&gt; NULL
+-42:, List(2,NULL) -&gt; -42: 2
+-42: 1: 2 : 3: 4, List(5,NULL) -&gt; -42: 1: 2: 3: 4: 5
+</div></code></pre>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">list_insert</span><span class="hljs-params">(<span class="hljs-built_in">list</span> *l, <span class="hljs-built_in">list</span> *elm, <span class="hljs-keyword">size_t</span> n)</span></span>;
+</div></code></pre>
+<p>Behavior:<br>
+Insert at the n-ieme place of the list l the element elm.</p>
+<pre class="hljs"><code><div>examples:
+list, elm, n -&gt; list after
+
+NULL, List(2,NULL), n -&gt; NULL
+-42: , List(2,NULL), n&gt;=0 -&gt; -42:2
+-42: 1: 3: 4, List(2,NULL), 1 -&gt; -42: 1: 2: 3: 4
+</div></code></pre>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">insert_in_sorted_list</span><span class="hljs-params">(<span class="hljs-built_in">list</span>* l, <span class="hljs-built_in">list</span>* elm)</span></span>;
+</div></code></pre>
+<p>Behavior:
+Insert element elm in the sorted list l in order to keep l sorted.</p>
+<pre class="hljs"><code><div>examples:
+list, elm -&gt; list after
+
+NULL, List(2,NULL) -&gt; NULL
+-42:, List(2,NULL) -&gt; -42: 2
+-42: 1: 3: 4: 5, List(2,NULL) -&gt; -42: 1: 2: 3: 4: 5
+</div></code></pre>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-built_in">list</span> *<span class="hljs-title">list_pop_front</span><span class="hljs-params">(<span class="hljs-built_in">list</span> *l)</span></span>;
+</div></code></pre>
+<p>Behavior:<br>
+Remove and return the first element of the list l.</p>
+<pre class="hljs"><code><div>examples:
+list before -&gt; list after, elm
+
+NULL -&gt; NULL, NULL
+-42: -&gt; -42:, NULL
+-42: 2 -&gt; -42:, List(2,NULL)
+-42: 1: 2: 3 -&gt; -42: 2: 3, List(val=1,next-&gt;2)
+</div></code></pre>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-built_in">list</span>* <span class="hljs-title">list_remove</span><span class="hljs-params">(<span class="hljs-built_in">list</span>* l, <span class="hljs-keyword">size_t</span> n)</span></span>;
+</div></code></pre>
+<p>Behavior:<br>
+Remove and return the n-ieme element of the list l. If it does not exist do nothing.</p>
+<pre class="hljs"><code><div>examples:
+list, n -&gt; list after
+
+-42: 1: 2: 3: 4, 1 -&gt; -42: 2: 3: 4
+-42: 1: 2: 3: 4, -1 -&gt; -42: 1: 2: 3: 4
+-42: 1: 2: 3: 4, 3 -&gt; -42: 1: 2: 3:
+</div></code></pre>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-built_in">list</span>* <span class="hljs-title">list_search</span><span class="hljs-params">(<span class="hljs-built_in">list</span>* l, <span class="hljs-keyword">int</span> val)</span></span>;
+</div></code></pre>
+<p>Behavior:<br>
+Search in the list l if there is an element of the list with as value the in val. If there is return it else return NULL.</p>
+<pre class="hljs"><code><div>examples:
+l, val -&gt; return
+
+-42:12:98, -42 -&gt; NULL
+-42:12:98, 12 -&gt; List(12,-&gt; 98)
+-42:12:98, 100 -&gt; NULL
+</div></code></pre>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">FreeList</span><span class="hljs-params">(<span class="hljs-built_in">list</span>* l)</span></span>;
+</div></code></pre>
+<p>Behavior:<br>
+Free all the elements of the list l.</p>
+<h1 id="queues">QUEUES:</h1>
+<p>The struct of queue:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">queue</span> <span class="hljs-title">queue</span>;</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">queue</span>{</span>
+  <span class="hljs-built_in">list</span>* Queue;
+};
+</div></code></pre>
+<p>We assume for this part that queues won't be NULL as parameters</p>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-built_in">queue</span>* <span class="hljs-title">init_queue</span><span class="hljs-params">()</span></span>;
+</div></code></pre>
+<p>Behavior:
+Have to create and initialise an empty queue. Do not forget to initialse the list of the queue with a sentinelle (-42).</p>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">enqueue</span><span class="hljs-params">(<span class="hljs-built_in">queue</span>* q, <span class="hljs-keyword">int</span> elt)</span></span>;
+</div></code></pre>
+<p>Behavior:<br>
+Enqueue an element to the list Queue of the queue q. WARNING: elt is not a list element, you have to malloc it.</p>
+<pre class="hljs"><code><div>examples:
+q, elt -&gt; q after
+
+-42:, 1 -&gt; -42:1
+-42: 1: 2: 9, 4 -&gt; -42: 1: 2: 9: 4
+</div></code></pre>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-built_in">list</span>* <span class="hljs-title">dequeue</span><span class="hljs-params">(<span class="hljs-built_in">queue</span>* q)</span></span>;
+</div></code></pre>
+<p>Behavior:<br>
+Dequeue an element of the queue q and return it. If there is no element to dequeue return NULL.</p>
+<pre class="hljs"><code><div>examples
+q -&gt; return, q after
+
+-42: 1: 7: 10 -&gt; List(1,-&gt;7), -42: 7: 10
+-42: -&gt; NULL, -42:
+</div></code></pre>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">isempty</span><span class="hljs-params">(<span class="hljs-built_in">queue</span>* q)</span></span>;
+</div></code></pre>
+<p>Behavior:<br>
+Return true (1) if the queue q is empty, else return false (0).</p>
+<pre class="hljs"><code><div>examples:
+q -&gt; return
+
+-42: 1: 2 -&gt; 0
+-42: -&gt; 1
+</div></code></pre>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">FreeQueue</span><span class="hljs-params">(<span class="hljs-built_in">queue</span>* q)</span></span>;
+</div></code></pre>
+<p>Behavior:<br>
+Free all the element of the queue q and free the queue q.</p>
+<h1 id="graphs">GRAPHS:</h1>
+<p>The graph struct:</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">graph</span> <span class="hljs-title">graph</span>;</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">graph</span>{</span>
+  <span class="hljs-keyword">int</span> is_directed;
+  <span class="hljs-keyword">int</span> order;
+  <span class="hljs-built_in">list</span>** adjlists;
+};
+</div></code></pre>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function">graph* <span class="hljs-title">init_graph</span><span class="hljs-params">(<span class="hljs-keyword">int</span> order, <span class="hljs-keyword">int</span> is_directed)</span></span>;
+</div></code></pre>
+<p>Behavior:<br>
+create and Initialise a graph without links, juste it initialise each list of the array with a sentinelle (-42) and declare if the graph is directed or not.</p>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">add_edge</span><span class="hljs-params">(graph* G, <span class="hljs-keyword">int</span> src, <span class="hljs-keyword">int</span> dst)</span></span>;
+</div></code></pre>
+<p>Behavior:<br>
+Add an edge between vertice src and vertice dst. Do not forget the case of an non directed graph.<br>
+Warning if the src and/or the dst do not exist(s) then do nothing</p>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">add_vertice</span><span class="hljs-params">(graph* G)</span></span>;
+</div></code></pre>
+<p>Behavior:<br>
+Add a vertices to the array of adjlists. You have to realocate data.</p>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">backedges_dfs</span><span class="hljs-params">(graph* G)</span></span>;
+</div></code></pre>
+<p>Behavior:<br>
+Display backedges (you can let repetitions) of the graph G.
+It is the same function as saw in algorithm.</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">components_dfs</span><span class="hljs-params">(graph* G)</span></span>;
+</div></code></pre>
+<p>Behavior:<br>
+Return the number of connective components with a dfs algorithm.</p>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">components_bfs</span><span class="hljs-params">(graph* G)</span></span>;
+</div></code></pre>
+<p>Behavior:<br>
+Return the number of connective components with a bfs algorithm.</p>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-built_in">list</span>* <span class="hljs-title">path</span><span class="hljs-params">(graph* G, <span class="hljs-keyword">int</span> src, <span class="hljs-keyword">int</span> dst)</span></span>;
+</div></code></pre>
+<p>Behavior:<br>
+Return a list representing the sortest path to go from src to dst.</p>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">eccentricity</span><span class="hljs-params">(graph* G, <span class="hljs-keyword">int</span> src)</span></span>;
+</div></code></pre>
+<p>Behavior:
+Return the eccentricity of the the Vertice src of graph G.</p>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-built_in">list</span>* <span class="hljs-title">center</span><span class="hljs-params">(graph* G)</span></span>;
+</div></code></pre>
+<p>Behavior:<br>
+Return the list of all element of the center of the graph G.</p>
+<hr>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">FreeGraph</span><span class="hljs-params">(graph* g)</span></span>;
+</div></code></pre>
+<p>Free everything in the graph G.</p>
+<hr>
+<h1 id="end">END:</h1>
+<p>send me email if there is a problem or question: mathieu.merienne@epita.fr</p>
+<p>Good Luck !</p>
+
+</body>
+</html>
