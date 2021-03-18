@@ -4,7 +4,7 @@
 
 This project is base on the Epita computer science works.
 
-It summerizas almost everything done during the S3.
+It summarizes almost everything done during the S3.
 
 This TP has been made for the students, It could help them during their learning of C.
 
